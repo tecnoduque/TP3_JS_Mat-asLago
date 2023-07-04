@@ -27,6 +27,7 @@ const eliminarResultados = document.getElementById(`eliminarResultados`)
 const contenedor = document.getElementById(`contenedor`)
 const elementosCarrito = document.getElementById(`carrito`)
 const verRegistroBtn = document.getElementById(`verRegistro`)
+const totalCarrito = document.getElementById(`totalCarrito`)
 
 document.getElementById("input-busqueda").addEventListener("keyup", function(event) {
   if (event.key === "Escape") {
@@ -89,6 +90,8 @@ function agregarAlCarrito(servicio) {
     }
     carrito.push(nuevoServicio)
     agregarRegistro(`se agregó el servicio ${nuevoServicio.nombre}`)
+  
+
 
   }
   
@@ -105,11 +108,11 @@ function agregarAlCarrito(servicio) {
 function mostrarCarrito() {
   // Limpiar el contenido anterior del carrito para no repetir resultados
   elementosCarrito.innerHTML = ``
-
   
   // Recorrer los elementos del carrito
   carrito.forEach(servicio => {
-    const servicioElemento = document.createElement(`li`)
+  const servicioElemento = document.createElement(`li`)
+
     
     // Crear el elemento para mostrar el nombre y precio del servicio
     const nombrePrecioElemento = document.createElement(`div`)
@@ -124,16 +127,32 @@ function mostrarCarrito() {
   const agregarBtn = document.createElement(`button`)
   agregarBtn.innerHTML = `+`
   agregarBtn.addEventListener(`click`, () => incrementarEnCarrito(servicio.id))
+
+  //el total del carrito
+  totalCarrito.innerHTML = sumarPreciosCarrito()
   
   // Agregar los elementos al servicioElemento
     servicioElemento.appendChild(nombrePrecioElemento)
     servicioElemento.appendChild(eliminarBtn)
     servicioElemento.appendChild(agregarBtn)
     
+ 
     // Agregar el servicioElemento al carrito
     elementosCarrito.appendChild(servicioElemento)
+   
+
   })
+
 }
+
+
+//fn de reduce para el total del carrito
+function sumarPreciosCarrito() {
+  const total = carrito.reduce((suma, servicio) => suma + (servicio.precio * servicio.cant), 0);
+  const totalCompleto = `Total de servicios: $${total}` 
+  return totalCompleto;
+}
+
 
 function eliminarDelCarrito(servicioId) {
   const servicioEliminar = carrito.findIndex(item => item.id === servicioId)
