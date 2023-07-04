@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TP3 JS Matías Lago </title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="contenedor">
+    <h1>Buscar Servicios</h1>
+    <input id="input-busqueda" type="text" placeholder="Buscar servicio (ESC para limpiar)">
+    <ul id="lista-resultados"></ul>
+    
+    <div id="contenedorCarrito"><ul id="carrito"></ul></div>
+    <h1>Administrar Servicios</h1>
+
+        <input id="nombreServicio" type="text" placeholder="nuevo servicio">
+         <input id="valorServicio" type="text" placeholder="precio">
+         <button id="btn-nuevo-servicio">Agregar nuevo servicio</button>
+
+
+
+        <input id="buscarParaEliminar" type="text" placeholder="Eliminar servicio (ESC para limpiar)">
+        <ul id="eliminarResultados"></ul>
+<div id="config">
+        <textarea id="registro" rows="10"></textarea>
+        <button id="verRegistro">Ocultar Registro</button>
+        <button id="btnVaciarLocalStorage">Vaciar LocalStorage</button>
+</div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
