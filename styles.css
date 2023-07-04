@@ -1,10 +1,13 @@
 body {
   flex-wrap: nowrap;
-  margin:0 auto;
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 /* prueba fade in  */
 .fade-in {
   opacity: 0;
@@ -20,7 +23,9 @@ body {
   margin: 10px auto;
   padding: 10px;
   box-sizing: border-box;
+  text-align: center; 
 }
+
 
 h1 {
   text-align: center;
@@ -71,7 +76,6 @@ li {
 
 #contenedorCarrito {
   background-color: bisque;
-  padding: 20px 0;
 }
 
 .columna {
@@ -81,5 +85,5 @@ li {
 
 .servicio-item {
   list-style-type: none;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }

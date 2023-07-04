@@ -200,13 +200,21 @@ btnNuevoServicio.addEventListener(`click`, () => {
 
 // Fn para agregar un nuevo servicio a serviciosPosibles y ya meterlo al carrito
 function nuevoServicio() {
-  const ultimoIDutilizado = obtenerUltimoID()
-  const nuevoNombre = document.getElementById("nombreServicio").value
-  let nuevoPrecio = parseFloat(document.getElementById("valorServicio").value)
+  const ultimoIDutilizado = obtenerUltimoID();
+  let nuevoNombre = document.getElementById("nombreServicio").value;
+  let nuevoPrecio = parseFloat(document.getElementById("valorServicio").value);
+
+  if (nuevoNombre === "") {
+    nuevoNombre = `Servicio con ID ${ultimoIDutilizado + 1}`;
+    agregarRegistro(`No se le puso nombre al servicio así que le puse automáticamente ${nuevoNombre}`
+    );
+  }
 
   if (isNaN(nuevoPrecio)) {
     nuevoPrecio = 0;
-    agregarRegistro(`el servicio con id ${ultimoIDutilizado + 1} tenía precio raro, así que se asignó 0`);
+    agregarRegistro(
+      `El servicio con ID ${ultimoIDutilizado + 1} tenía un precio raro, así que se asignó 0.`
+    );
   }
 
   const nuevoServicio = {
