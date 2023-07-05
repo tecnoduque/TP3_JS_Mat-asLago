@@ -25,7 +25,11 @@ body {
   box-sizing: border-box;
   text-align: center; 
 }
+p {
+  font-weight: 600;
+  font-size: larger;
 
+}
 
 h1 {
   text-align: center;
@@ -87,3 +91,6 @@ li {
   list-style-type: none;
   margin-bottom: 5px;
 }
+#totalCarrito{
+  font-size: large;
+  }

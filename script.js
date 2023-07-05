@@ -29,6 +29,9 @@ const elementosCarrito = document.getElementById(`carrito`)
 const verRegistroBtn = document.getElementById(`verRegistro`)
 const totalCarrito = document.getElementById(`totalCarrito`)
 
+totalCarrito.innerHTML = `$0`;
+
+
 document.getElementById("input-busqueda").addEventListener("keyup", function(event) {
   if (event.key === "Escape") {
     this.value = "";
@@ -111,6 +114,8 @@ function mostrarCarrito() {
   
   // Recorrer los elementos del carrito
   carrito.forEach(servicio => {
+    
+    
   const servicioElemento = document.createElement(`li`)
 
     
@@ -135,23 +140,24 @@ function mostrarCarrito() {
     servicioElemento.appendChild(nombrePrecioElemento)
     servicioElemento.appendChild(eliminarBtn)
     servicioElemento.appendChild(agregarBtn)
-    
- 
+  
     // Agregar el servicioElemento al carrito
-    elementosCarrito.appendChild(servicioElemento)
-   
-
+    elementosCarrito.appendChild(servicioElemento)  
   })
-
 }
-
-
 //fn de reduce para el total del carrito
 function sumarPreciosCarrito() {
-  const total = carrito.reduce((suma, servicio) => suma + (servicio.precio * servicio.cant), 0);
-  const totalCompleto = `Total de servicios: $${total}` 
-  return totalCompleto;
+  const tieneServicios = carrito.some(servicio => servicio.cant > 0);
+  if (tieneServicios) {
+    const total = carrito.reduce((suma, servicio) => suma + (servicio.precio * servicio.cant), 0);
+    const totalCompleto = `$${total}`;
+    return totalCompleto;
+  } else {
+    return "0";
+  }
 }
+
+
 
 
 function eliminarDelCarrito(servicioId) {
