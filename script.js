@@ -17,7 +17,7 @@ let serviciosPosibles = JSON.parse(localStorage.getItem(`servicios`)) || [
 let carrito = obtenerCarrito()
 
 // DOM
-const btnVaciarLocalStorage = document.getElementById("btnVaciarLocalStorage")
+const btnVaciarLocalStorage = document.getElementById(`btnVaciarLocalStorage`)
 
 const registro = document.getElementById(`registro`)
 const inputBusqueda = document.getElementById(`input-busqueda`)
@@ -27,39 +27,35 @@ const eliminarResultados = document.getElementById(`eliminarResultados`)
 const contenedor = document.getElementById(`contenedor`)
 const elementosCarrito = document.getElementById(`carrito`)
 const verRegistroBtn = document.getElementById(`verRegistro`)
-const totalCarrito = document.getElementById(`totalCarrito`)
+let totalCarrito = document.getElementById(`totalCarrito`)
 
-totalCarrito.innerHTML = `$0`;
+totalCarrito.innerHTML = `$0`
 
-
-document.getElementById("input-busqueda").addEventListener("keyup", function(event) {
-  if (event.key === "Escape") {
-    this.value = "";
+document.getElementById(`input-busqueda`).addEventListener(`keyup`, function(event) {
+  if (event.key === `Escape`) {
+    this.value = ``
     listaResultados.innerHTML = ``
     agregarRegistro(`se presionó ESC y se limpió el campo de buscar servicio`)
   }
-});
-document.getElementById("buscarParaEliminar").addEventListener("keyup", function(event) {
-  if (event.key === "Escape") {
-    this.value = "";
+})
+document.getElementById(`buscarParaEliminar`).addEventListener(`keyup`, function(event) {
+  if (event.key === `Escape`) {
+    this.value = ``
     eliminarResultados.innerHTML = ``
     agregarRegistro(`se presionó ESC y limpió el campo de eliminar servicio`)
   }
-});
+})
+//controlar y fn de eliminar del localStorage
 
-
-
-btnVaciarLocalStorage.addEventListener("click", () => {
-  eliminarLocalStorage();
-});
-
+btnVaciarLocalStorage.addEventListener(`click`, () => {
+  eliminarLocalStorage()
+})
 function eliminarLocalStorage() {
-  localStorage.clear();
+  localStorage.clear()
   agregarRegistro(`vaciado el localStorage`)
 }
-
 function agregarRegistro(mensaje) {
-  registro.value += `${mensaje}\n`;
+  registro.value += `${mensaje}\n`
 }
 
 // Fn traer el carrito de localStorage
@@ -93,12 +89,7 @@ function agregarAlCarrito(servicio) {
     }
     carrito.push(nuevoServicio)
     agregarRegistro(`se agregó el servicio ${nuevoServicio.nombre}`)
-  
-
-
   }
-  
-  
   // Limpiar la lista de resultados
   listaResultados.innerHTML = ``
   // Limpiar el campo de búsqueda
@@ -111,14 +102,10 @@ function agregarAlCarrito(servicio) {
 function mostrarCarrito() {
   // Limpiar el contenido anterior del carrito para no repetir resultados
   elementosCarrito.innerHTML = ``
-  
   // Recorrer los elementos del carrito
   carrito.forEach(servicio => {
-    
-    
   const servicioElemento = document.createElement(`li`)
 
-    
     // Crear el elemento para mostrar el nombre y precio del servicio
     const nombrePrecioElemento = document.createElement(`div`)
     nombrePrecioElemento.innerHTML = `${servicio.cant} -  ${servicio.nombre} - $${servicio.precio}`
@@ -134,8 +121,9 @@ function mostrarCarrito() {
   agregarBtn.addEventListener(`click`, () => incrementarEnCarrito(servicio.id))
 
   //el total del carrito
+
   totalCarrito.innerHTML = sumarPreciosCarrito()
-  
+
   // Agregar los elementos al servicioElemento
     servicioElemento.appendChild(nombrePrecioElemento)
     servicioElemento.appendChild(eliminarBtn)
@@ -147,17 +135,16 @@ function mostrarCarrito() {
 }
 //fn de reduce para el total del carrito
 function sumarPreciosCarrito() {
-  const tieneServicios = carrito.some(servicio => servicio.cant > 0);
+  const total = carrito.reduce((suma, servicio) => suma + (servicio.precio * servicio.cant), 0)
+  const tieneServicios = carrito.some(servicio => servicio.cant > 0)
+  
   if (tieneServicios) {
-    const total = carrito.reduce((suma, servicio) => suma + (servicio.precio * servicio.cant), 0);
-    const totalCompleto = `$${total}`;
-    return totalCompleto;
+    const totalCompleto = `$${total}`
+    return totalCompleto
   } else {
-    return "0";
+    return '0'
   }
 }
-
-
 
 
 function eliminarDelCarrito(servicioId) {
@@ -173,6 +160,7 @@ function eliminarDelCarrito(servicioId) {
     }
 
     // Guardar el carrito en localStorage y mostrar el carrito actualizado
+    sumarPreciosCarrito()
     guardarCarrito()
     mostrarCarrito()
   }
@@ -191,6 +179,7 @@ function incrementarEnCarrito(servicioId) {
     }
     
     // Guardar el carrito en localStorage y mostrar el carrito actualizado
+    
     guardarCarrito()
     mostrarCarrito()
   }
@@ -202,7 +191,7 @@ inputBusqueda.addEventListener(`input`, () => {
 
 
   //ordenar alfabeticamente la lista de resultados
-  resultadosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  resultadosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre))
 
 
   // Limpiar la lista de resultados cuando se hace click
@@ -225,21 +214,21 @@ btnNuevoServicio.addEventListener(`click`, () => {
 
 // Fn para agregar un nuevo servicio a serviciosPosibles y ya meterlo al carrito
 function nuevoServicio() {
-  const ultimoIDutilizado = obtenerUltimoID();
-  let nuevoNombre = document.getElementById("nombreServicio").value;
-  let nuevoPrecio = parseFloat(document.getElementById("valorServicio").value);
+  const ultimoIDutilizado = obtenerUltimoID()
+  let nuevoNombre = document.getElementById(`nombreServicio`).value
+  let nuevoPrecio = parseFloat(document.getElementById(`valorServicio`).value)
 
-  if (nuevoNombre === "") {
-    nuevoNombre = `Servicio con ID ${ultimoIDutilizado + 1}`;
+  if (nuevoNombre === ``) {
+    nuevoNombre = `Servicio con ID ${ultimoIDutilizado + 1}`
     agregarRegistro(`No se le puso nombre al servicio así que le puse automáticamente ${nuevoNombre}`
-    );
+    )
   }
 
   if (isNaN(nuevoPrecio)) {
-    nuevoPrecio = 0;
+    nuevoPrecio = 0
     agregarRegistro(
       `El servicio con ID ${ultimoIDutilizado + 1} tenía un precio raro, así que se asignó 0.`
-    );
+    )
   }
 
   const nuevoServicio = {
@@ -247,7 +236,7 @@ function nuevoServicio() {
     cant: 1,
     nombre: nuevoNombre,
     precio: nuevoPrecio,
-  };
+  }
 
   serviciosPosibles.push(nuevoServicio)
   carrito.push(nuevoServicio)
@@ -263,7 +252,7 @@ function nuevoServicio() {
     const resultadosFiltrados = serviciosPosibles.filter(servicio => servicio.nombre.toLowerCase().includes(busqueda))
 
     //ordenar alfabeticamente 
-    resultadosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    resultadosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre))
 
   
     // Mostrar qué se encontró 
@@ -319,25 +308,25 @@ guardarCarrito()
 //Controlar el botón de ver carrito
 verRegistroBtn.addEventListener(`click`, () => {
   if (registro.style.display === 'none') {
-    registro.style.display = 'block'; // Mostrar el textarea
-    verRegistroBtn.innerHTML = 'Ocultar Registro';
+    registro.style.display = 'block' // Mostrar el textarea
+    verRegistroBtn.innerHTML = 'Ocultar Registro'
   } else {
-    registro.style.display = 'none'; // Ocultar el textarea
-    verRegistroBtn.innerHTML = 'Mostrar Registro';
+    registro.style.display = 'none' // Ocultar el textarea
+    verRegistroBtn.innerHTML = 'Mostrar Registro'
   }
-});
+})
 
 
 
 
 // prueba fn de fade in
 function paraFade(elemento) {
-  elemento.classList.add('visible');
+  elemento.classList.add('visible')
 }
-const elementosFade = document.querySelectorAll('.fade-in');
+const elementosFade = document.querySelectorAll('.fade-in')
 elementosFade.forEach(element => {
-  paraFade(element);
-});
+  paraFade(element)
+})
 
 
 
