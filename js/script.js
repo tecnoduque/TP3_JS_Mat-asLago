@@ -1,6 +1,6 @@
 // Fijarse si hay servicios en el local storage y crear algunos 
 let serviciosPosibles = JSON.parse(localStorage.getItem(`servicios`)) || [
-  { id: 1, cant: 0, nombre:  `Visita a domicilio`, precio: 3000 },
+  { id: 1, cant: 0, nombre: `Visita a domicilio`, precio: 3000 },
   { id: 2, cant: 0, nombre: `Adicional por distancia`, precio: 1500 },
   { id: 3, cant: 0, nombre: `Configuración modem / router / mikrotik / unifi)`, precio: 3500 },
   { id: 4, cant: 0, nombre: `Cableado estructurado con materiales x 20mts`, precio: 3000 },
@@ -40,7 +40,7 @@ totalCarrito.innerHTML = (sumarPreciosCarrito())
 
 // Fn traer el carrito de localStorage
 function obtenerCarrito() {
-  const carritoJSON = localStorage.getItem(`carrito`) 
+  const carritoJSON = localStorage.getItem(`carrito`)
   return carritoJSON ? JSON.parse(carritoJSON) : [] // si null/undefined deja el arraw vacío 
 }
 // Llamar a la fn mostrarCarrito por si había algo en localStorage
@@ -66,11 +66,11 @@ function guardarCarrito() {
 // Fn para agregar un servicio al carrito mirando si ya está
 function agregarAlCarrito(servicio) {
   const servicioExistente = carrito.find(item => item.id === servicio.id)
-  
+
   if (servicioExistente) {
     servicioExistente.cant += 1
     agregarRegistro(`se incrementó +1 el servicio ${servicioExistente.nombre}`)
-    
+
 
 
   } else {
@@ -155,7 +155,7 @@ function sumarPreciosCarrito() {
   total = carrito.reduce((suma, servicio) => suma + (servicio.precio * servicio.cant), 0)
   const totalCompleto = `Total: $${total}`
   return totalCompleto
-  
+
 }
 
 //fn de reduce para cantidad de items 
@@ -167,27 +167,27 @@ function actualizarCantidadCarrito() {
 //fn eliminar del carrito
 function eliminarDelCarrito(servicioId) {
   const servicioEliminar = carrito.findIndex(item => item.id === servicioId)
-  
+
   if (servicioEliminar !== -1) {
     carrito[servicioEliminar].cant -= 1
     agregarRegistro(`se eliminó del carrito una unidad de ${carrito[servicioEliminar].nombre}`)
 
-    
+
     if (carrito[servicioEliminar].cant === 0) {
       carrito.splice(servicioEliminar, 1)
     }
     // Guardar el carrito en localStorage y mostrar el carrito actualizado
     alertTostada(`quitaste`)
     guardarCarrito()
-    mostrarCarrito()    
+    mostrarCarrito()
     carritoVacio()
-    
+
   }
 }
 //fn de incrementar en carrito
 function incrementarEnCarrito(servicioId) {
   const servicioIncrementar = carrito.findIndex(item => item.id === servicioId)
-  
+
   if (servicioIncrementar !== -1) {
     carrito[servicioIncrementar].cant += 1
     agregarRegistro(`se incrementó una unidad de ${carrito[servicioIncrementar].nombre}`)
@@ -205,7 +205,7 @@ inputBusqueda.addEventListener(`input`, () => {
   const resultadosFiltrados = serviciosPosibles.filter(servicio => servicio.nombre.toLowerCase().includes(busqueda))
 
 
-//ordenar alfabeticamente la lista de resultados
+  //ordenar alfabeticamente la lista de resultados
   resultadosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre))
 
 
@@ -215,7 +215,7 @@ inputBusqueda.addEventListener(`input`, () => {
   // Mostrar qué se encontró 
   resultadosFiltrados.forEach(resultado => {
     const elementoResultado = document.createElement(`li`)
-    elementoResultado.innerHTML =  `<img src="./img/${resultado.id}.jpg" alt="${resultado.nombre}">
+    elementoResultado.innerHTML = `<img src="./img/${resultado.id}.jpg" alt="${resultado.nombre}">
       <span>${resultado.nombre}</span>`
     elementoResultado.addEventListener(`click`, () => agregarAlCarrito(resultado))
     listaResultados.appendChild(elementoResultado)
@@ -241,7 +241,7 @@ buscarParaEliminar.addEventListener(`input`, () => {
   })
 })
 //limpiar con escape el input busqueda
-document.getElementById(`inputBusqueda`).addEventListener(`keyup`, function(event) {
+document.getElementById(`inputBusqueda`).addEventListener(`keyup`, function (event) {
   if (event.key === `Escape`) {
     this.value = ``
     listaResultados.innerHTML = ``
@@ -249,7 +249,7 @@ document.getElementById(`inputBusqueda`).addEventListener(`keyup`, function(even
   }
 })
 //limpiar con escape el input de eliminar servicios 
-document.getElementById(`buscarParaEliminar`).addEventListener(`keyup`, function(event) {
+document.getElementById(`buscarParaEliminar`).addEventListener(`keyup`, function (event) {
   if (event.key === `Escape`) {
     this.value = ``
     eliminarResultados.innerHTML = ``
@@ -308,21 +308,21 @@ function obtenerUltimoID() {
 }
 
 //fn para eliminar servicios 
-  function eliminarServicio(servicio) {
-    const indiceServicio = serviciosPosibles.findIndex(item => item.id === servicio.id)
-    
-    if (indiceServicio !== -1) {
-      serviciosPosibles.splice(indiceServicio, 1)
-      eliminarResultados.innerHTML = ``
-      buscarParaEliminar.value = ``
-      agregarRegistro(`se eliminó el servicio con id ${servicio.id}`)
+function eliminarServicio(servicio) {
+  const indiceServicio = serviciosPosibles.findIndex(item => item.id === servicio.id)
 
-// Guardar los cambios en localStorage y mostrar los servicios actualizados
-      guardarServicios()
-      mostrarCarrito()
-      
-    }
+  if (indiceServicio !== -1) {
+    serviciosPosibles.splice(indiceServicio, 1)
+    eliminarResultados.innerHTML = ``
+    buscarParaEliminar.value = ``
+    agregarRegistro(`se eliminó el servicio con id ${servicio.id}`)
+
+    // Guardar los cambios en localStorage y mostrar los servicios actualizados
+    guardarServicios()
+    mostrarCarrito()
+
   }
+}
 
 // Fn para guardar los serviciosPosibles en localStorage
 function guardarServicios() {
@@ -351,9 +351,9 @@ elementosFade.forEach(element => {
   paraFade(element)
 })
 
-function alertTostada(texto){ 
+function alertTostada(texto) {
   Toastify({
-   text: texto,
-   duration: 3000
+    text: texto,
+    duration: 3000
   }).showToast()
 }
