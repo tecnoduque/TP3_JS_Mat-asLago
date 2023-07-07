@@ -6,24 +6,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
 <body>
   <div id="contenedor" class="fade-in">
     <h1>Buscar Servicios</h1>
-    <input id="input-busqueda" type="text" placeholder="Buscar servicio (ESC para limpiar)">
-    <ul id="lista-resultados"></ul>
+    <input id="inputBusqueda" type="text" placeholder="Buscar servicio (ESC para limpiar)">
+    <ul id="listaResultados"></ul>
     
     <div id="contenedorCarrito">
       <ul id="carrito"></ul>
 <ul>Total de servcios listados</ul>
+      <ul id="carritoCantidad"></ul>
       <ul id="totalCarrito"></ul>
+     
+
     </div>
     <h1>Administrar Servicios</h1>
 
         <input id="nombreServicio" type="text" placeholder="nuevo servicio (o dejar vacío)">
          <input id="valorServicio" type="text" placeholder="precio (o cualquier cosa para $0)">
          <button id="btn-nuevo-servicio">Agregar nuevo servicio </button>
-
 
 
         <input id="buscarParaEliminar" type="text" placeholder="Eliminar servicio (ESC para limpiar)">
@@ -35,6 +39,7 @@
 </div>
 
   </div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
   <script src="./script.js"></script>
 </body>
