@@ -215,8 +215,13 @@ inputBusqueda.addEventListener(`input`, () => {
   // Mostrar qué se encontró 
   resultadosFiltrados.forEach(resultado => {
     const elementoResultado = document.createElement(`li`)
+    if (resultado.id < 13){
     elementoResultado.innerHTML = `<img src="./img/${resultado.id}.jpg" alt="${resultado.nombre}">
-      <span>${resultado.nombre}</span>`
+      <span>${resultado.nombre}</span>`}
+      else {
+        elementoResultado.innerHTML = `<img src="./img/nuevo.jpg" alt="${resultado.nombre}">
+        <span>${resultado.nombre}</span>`
+      }
     elementoResultado.addEventListener(`click`, () => agregarAlCarrito(resultado))
     listaResultados.appendChild(elementoResultado)
 
