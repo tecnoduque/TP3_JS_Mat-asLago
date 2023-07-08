@@ -69,7 +69,6 @@ function agregarAlCarrito(servicio) {
 
   if (servicioExistente) {
     servicioExistente.cant += 1
-    agregarRegistro(`se incrementó +1 el servicio ${servicioExistente.nombre}`)
     alertTostada(`se incrementó +1 el servicio ${servicioExistente.nombre}`)
 
   } else {
@@ -80,7 +79,6 @@ function agregarAlCarrito(servicio) {
       precio: servicio.precio
     }
     carrito.push(nuevoServicio)
-    agregarRegistro(`se agregó el servicio ${nuevoServicio.nombre}`)
     alertTostada(`se agregó el servicio ${nuevoServicio.nombre}`)
 
   }
