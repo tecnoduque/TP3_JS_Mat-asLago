@@ -70,8 +70,7 @@ function agregarAlCarrito(servicio) {
   if (servicioExistente) {
     servicioExistente.cant += 1
     agregarRegistro(`se incrementó +1 el servicio ${servicioExistente.nombre}`)
-
-
+    alertTostada(`se incrementó +1 el servicio ${servicioExistente.nombre}`)
 
   } else {
     const nuevoServicio = {
@@ -82,6 +81,8 @@ function agregarAlCarrito(servicio) {
     }
     carrito.push(nuevoServicio)
     agregarRegistro(`se agregó el servicio ${nuevoServicio.nombre}`)
+    alertTostada(`se agregó el servicio ${nuevoServicio.nombre}`)
+
   }
   // Limpiar la lista de resultados
   listaResultados.innerHTML = ``
@@ -171,13 +172,13 @@ function eliminarDelCarrito(servicioId) {
   if (servicioEliminar !== -1) {
     carrito[servicioEliminar].cant -= 1
     agregarRegistro(`se eliminó del carrito una unidad de ${carrito[servicioEliminar].nombre}`)
+    alertTostada(`se eliminó del carrito una unidad de ${carrito[servicioEliminar].nombre}`)
 
 
     if (carrito[servicioEliminar].cant === 0) {
       carrito.splice(servicioEliminar, 1)
     }
     // Guardar el carrito en localStorage y mostrar el carrito actualizado
-    alertTostada(`quitaste`)
     guardarCarrito()
     mostrarCarrito()
     carritoVacio()
@@ -191,8 +192,9 @@ function incrementarEnCarrito(servicioId) {
   if (servicioIncrementar !== -1) {
     carrito[servicioIncrementar].cant += 1
     agregarRegistro(`se incrementó una unidad de ${carrito[servicioIncrementar].nombre}`)
+    alertTostada(`se incrementó una unidad de ${carrito[servicioIncrementar].nombre}`)
+
     // Guardar el carrito en localStorage y mostrar el carrito actualizado
-    alertTostada(`agregaste`)
     guardarCarrito()
     mostrarCarrito()
     carritoVacio()
@@ -251,6 +253,7 @@ document.getElementById(`inputBusqueda`).addEventListener(`keyup`, function (eve
     this.value = ``
     listaResultados.innerHTML = ``
     agregarRegistro(`se presionó ESC y se limpió el campo de buscar servicio`)
+    alertTostada(`se presionó ESC y limpió el campo de buscar servicio`)
   }
 })
 //limpiar con escape el input de eliminar servicios 
@@ -259,6 +262,8 @@ document.getElementById(`buscarParaEliminar`).addEventListener(`keyup`, function
     this.value = ``
     eliminarResultados.innerHTML = ``
     agregarRegistro(`se presionó ESC y limpió el campo de eliminar servicio`)
+    alertTostada(`se presionó ESC y limpió el campo de eliminar servicio`)
+
   }
 })
 
@@ -275,15 +280,18 @@ function nuevoServicio() {
 
   if (nuevoNombre === ``) {
     nuevoNombre = `Servicio con ID ${ultimoIDutilizado + 1}`
-    agregarRegistro(`No se le puso nombre al servicio así que le puse automáticamente ${nuevoNombre}`
-    )
+    agregarRegistro(`No se le puso nombre al servicio así que le puse automáticamente ${nuevoNombre}`)
+    alertTostada(`No se le puso nombre al servicio así que le puse automáticamente ${nuevoNombre}`)
+
+    
   }
 
   if (isNaN(nuevoPrecio)) {
     nuevoPrecio = 0
-    agregarRegistro(
-      `El servicio con ID ${ultimoIDutilizado + 1} tenía un precio raro, así que se asignó 0.`
-    )
+    agregarRegistro(`El servicio con ID ${ultimoIDutilizado + 1} tenía un precio raro, así que se asignó 0.`)
+    alertTostada(`El servicio con ID ${ultimoIDutilizado + 1} tenía un precio raro, así que se asignó 0.`)
+
+    
   }
 
   const nuevoServicio = {
@@ -297,6 +305,8 @@ function nuevoServicio() {
   serviciosPosibles.push(nuevoServicio)
   carrito.push(nuevoServicio)
   agregarRegistro(`se agregó un servicio con ID ${nuevoServicio.id} y se puso en el carrito`)
+  alertTostada(`se agregó un servicio con ID ${nuevoServicio.id} y se puso en el carrito`)
+
   mostrarCarrito()
   guardarCarrito()
   guardarServicios()
@@ -321,6 +331,9 @@ function eliminarServicio(servicio) {
     eliminarResultados.innerHTML = ``
     buscarParaEliminar.value = ``
     agregarRegistro(`se eliminó el servicio con id ${servicio.id}`)
+    alertTostada(`se eliminó el servicio con id ${servicio.id}`)
+
+    
 
     // Guardar los cambios en localStorage y mostrar los servicios actualizados
     guardarServicios()
@@ -334,18 +347,33 @@ function guardarServicios() {
   localStorage.setItem(`servicios`, JSON.stringify(serviciosPosibles))
 }
 
+// Function to toggle the display of the registro element
+function toggleRegistro() {
+  const registro = document.getElementById(`registro`)
+  // const verRegistroBtn = document.getElementById(`verRegistroBtn`)
+    if (registro.style.display === `none`) {
+    registro.style.display = `block` 
+    verRegistroBtn.innerHTML = `Ocultar Registro (o)`
+    alertTostada(`se muestra el registro`)
 
-
-//Controlar el botón de ver u ocultar el registro
-verRegistroBtn.addEventListener(`click`, () => {
-  if (registro.style.display === `none`) {
-    registro.style.display = `block` // Mostrar el textarea
-    verRegistroBtn.innerHTML = `Ocultar Registro`
   } else {
-    registro.style.display = `none` // Ocultar el textarea
-    verRegistroBtn.innerHTML = `Mostrar Registro`
+    registro.style.display = `none` 
+    verRegistroBtn.innerHTML = `Mostrar Registro (o)`
+    alertTostada(`se oculta el registro`)
+  }
+}
+// Controlar el botón de ver u ocultar el registro
+verRegistroBtn.addEventListener(`click`, toggleRegistro)
+
+document.addEventListener(`keyup`, function (event) {
+  if (event.key === `o` || event.key === `O`) {
+    agregarRegistro(`se presionó O y se muestra el registro`)
+    toggleRegistro()
+ 
   }
 })
+
+
 
 // prueba fn de fade in
 function paraFade(elemento) {
