@@ -29,6 +29,40 @@ const btnVaciarLocalStorage = document.getElementById(`btnVaciarLocalStorage`)
 let carritoCantidad = document.getElementById(`carritoCantidad`)
 
 
+// Promesa mirando localStorage
+function obtenerDatoLocalStorage() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        const dato = localStorage.getItem(`carrito`);
+        if (dato) {
+          resolve(dato); // Resuelve la promesa con el dato obtenido del localStorage
+        } else {
+          throw new Error(`No hay nada en localStorage`); // Lanza un error si el dato no existe
+        }
+      } catch (error) {
+        reject(error); // Rechaza la promesa en caso de cualquier error
+      }
+    }, 1000);
+  });
+}
+
+// Uso de la promesa
+obtenerDatoLocalStorage(`carrito`)
+  .then(dato => {
+    alertTostada(`El carrito tenía algo: \n ${dato}`);
+  })
+  .catch(error => {
+    alertTostada(`Hubo un error:\n ${error}`);
+  });
+
+
+
+
+
+
+
+
 // crear el carrito 
 let carrito = obtenerCarrito()
 
