@@ -39,7 +39,7 @@ btnFetch.addEventListener(`click`, () => {
     })
 })
 
-
+  //fn  para limpiar formularios & vaciar carrito
 function limpiarFormularios() {
   listaResultados.innerHTML = ``
   inputBusqueda.value = ``
@@ -54,6 +54,8 @@ function vaciarCarrito(){
   agregarRegistro(`se vacía el carrito`)
   alertTostada(`se vacía el carrito`)
 }
+
+  //comportamiento del btn enviar cotiza
 enviarCotiza.addEventListener(`click`, () => {
   alertTostada(`Cotiza terminada, total servicios: ${sumarPreciosCarrito()}`)
   agregarRegistro(`Cotiza terminada, total servicios: ${sumarPreciosCarrito()}`)
@@ -61,17 +63,6 @@ enviarCotiza.addEventListener(`click`, () => {
 })
 
 
-btnLimpiarRegistro.addEventListener(`click`, () => {
-  registro.value = ` ` 
-  alertTostada(`registro limpiado`)
-})
-document.addEventListener(`keyup`, function (event) {
-  if (event.key === `-`) {
-    registro.value = ` ` 
-  alertTostada(`registro limpiado`)
-  alertTostada(`se presionó - y limpió el campo de eliminar servicio`)
-  }
-})
 // crear el carrito 
 let carrito = obtenerCarrito()
     //definir total, que usa sumarPreciosCarrito
@@ -95,9 +86,7 @@ function eliminarLocalStorage() {
     agregarRegistro(`vaciado el localStorage`)
 }
 
-function agregarRegistro(mensaje) {
-    registro.value += `${mensaje}\n`
-}
+
 // Fn para guardar el carrito en localStorage
 function guardarCarrito() {
     localStorage.setItem(`carrito`, JSON.stringify(carrito))
@@ -333,7 +322,23 @@ function eliminarServicio(servicio) {
 function guardarServicios() {
     localStorage.setItem(`servicios`, JSON.stringify(serviciosPosibles))
 }
-// Function to toggle the display of the registro element
+
+// todo lo relacionado con el registro
+function agregarRegistro(mensaje) {
+  registro.value += `${mensaje}\n`
+}
+btnLimpiarRegistro.addEventListener(`click`, () => {
+registro.value = ` ` 
+alertTostada(`registro limpiado`)
+})
+document.addEventListener(`keyup`, function (event) {
+if (event.key === `-`) {
+  registro.value = ` ` 
+alertTostada(`registro limpiado`)
+alertTostada(`se presionó - y limpió el campo de eliminar servicio`)
+}
+})
+// Function toggle
 function toggleRegistro() {
     if (registro.style.display === `none`) {
         registro.style.display = `block`
@@ -345,13 +350,14 @@ function toggleRegistro() {
         alertTostada(`se oculta el registro`)
     }
 }
-// Controlar el botón de ver u ocultar el registro
 verRegistroBtn.addEventListener(`click`, toggleRegistro)
 document.addEventListener(`keyup`, function (event) {
     if (event.key === `+` || event.key === `+`) {
         toggleRegistro()
     }
 })
+
+
 // prueba fn de fade in
 function paraFade(elemento) {
     elemento.classList.add(`visible`)
