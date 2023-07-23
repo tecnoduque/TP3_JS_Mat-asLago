@@ -337,11 +337,11 @@ function guardarServicios() {
 function toggleRegistro() {
     if (registro.style.display === `none`) {
         registro.style.display = `block`
-        verRegistroBtn.innerHTML = `Ocultar Registro (X)`
+        verRegistroBtn.innerHTML = `Ocultar Registro (+)`
         alertTostada(`se muestra el registro`)
     } else {
         registro.style.display = `none`
-        verRegistroBtn.innerHTML = `Mostrar Registro (X)`
+        verRegistroBtn.innerHTML = `Mostrar Registro (+)`
         alertTostada(`se oculta el registro`)
     }
 }
