@@ -357,7 +357,6 @@ document.addEventListener(`keyup`, function (event) {
     }
 })
 
-
 // prueba fn de fade in
 function paraFade(elemento) {
     elemento.classList.add(`visible`)
@@ -368,8 +367,11 @@ elementosFade.forEach(element => {
 })
 
 function alertTostada(texto) {
-    Toastify({
-        text: texto,
-        duration: 3000
-    }).showToast()
+  Toastify({
+    text: texto,
+    offset: {
+      x: 500, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+      y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+    },
+  }).showToast();
 }
