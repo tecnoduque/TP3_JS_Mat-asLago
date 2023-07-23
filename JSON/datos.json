@@ -1,0 +1,16 @@
+{
+    "servicios": [
+      { "id": 1, "cant": 0, "nombre": "Visita a domicilio", "precio": 3000 },
+      { "id": 2, "cant": 0, "nombre": "Adicional por distancia", "precio": 1500 },
+      { "id": 3, "cant": 0, "nombre": "Configuración modem / router / mikrotik / unifi)", "precio": 3500 },
+      { "id": 4, "cant": 0, "nombre": "Cableado estructurado con materiales x 20mts", "precio": 3000 },
+      { "id": 5, "cant": 0, "nombre": "Cableado estructurado sin materiales x 20mts", "precio": 3000 },
+      { "id": 6, "cant": 0, "nombre": "Trabajos sobre CCTV / Controles de acceso", "precio": 4000 },
+      { "id": 7, "cant": 0, "nombre": "Instalación sistemas operativos w10 / OSX", "precio": 8000 },
+      { "id": 8, "cant": 0, "nombre": "Instalación puesto de trabajo", "precio": 3000 },
+      { "id": 9, "cant": 0, "nombre": "Acceso remoto simple", "precio": 200 },
+      { "id": 10, "cant": 0, "nombre": "Acceso remoto complejo", "precio": 3500 },
+      { "id": 11, "cant": 0, "nombre": "Relevamientos eléctricos, de red, de CCTV", "precio": 2500 },
+      { "id": 12, "cant": 0, "nombre": "Cambios en página web, dominios, hosting, integraciones de pago", "precio": 3000 }
+    ]
+  }

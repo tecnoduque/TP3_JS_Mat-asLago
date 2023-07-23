@@ -1,0 +1,24 @@
+{
+  "servicios": [
+    { "id": 13, "cant": 0, "nombre": "Instalación de software", "precio": 1800 },
+    { "id": 14, "cant": 0, "nombre": "Recuperación de datos", "precio": 2500 },
+    { "id": 15, "cant": 0, "nombre": "Configuración de impresoras", "precio": 1200 },
+    { "id": 16, "cant": 0, "nombre": "Mantenimiento de redes", "precio": 3500 },
+    { "id": 17, "cant": 0, "nombre": "Optimización de sistemas", "precio": 2800 },
+    { "id": 18, "cant": 0, "nombre": "Asesoría técnica", "precio": 2200 },
+    { "id": 19, "cant": 0, "nombre": "Solución de problemas de hardware", "precio": 3000 },
+    { "id": 20, "cant": 0, "nombre": "Actualización de software", "precio": 1500 },
+    { "id": 21, "cant": 0, "nombre": "Instalación de cámaras de seguridad", "precio": 3800 },
+    { "id": 22, "cant": 0, "nombre": "Configuración de redes inalámbricas", "precio": 2800 },
+    { "id": 23, "cant": 0, "nombre": "Reparación de equipos de cómputo", "precio": 3200 },
+    { "id": 24, "cant": 0, "nombre": "Servicio de soporte técnico", "precio": 2500 },
+    { "id": 25, "cant": 0, "nombre": "Optimización de sitios web", "precio": 2700 },
+    { "id": 26, "cant": 0, "nombre": "Configuración de servidores", "precio": 4000 },
+    { "id": 27, "cant": 0, "nombre": "Instalación de sistemas operativos", "precio": 2400 },
+    { "id": 28, "cant": 0, "nombre": "Cableado estructurado x 30mts", "precio": 4000 },
+    { "id": 29, "cant": 0, "nombre": "Mantenimiento de cámaras de seguridad", "precio": 3200 },
+    { "id": 30, "cant": 0, "nombre": "Asesoría en seguridad informática", "precio": 2600 },
+    { "id": 31, "cant": 0, "nombre": "Recuperación de contraseñas", "precio": 1800 },
+    { "id": 32, "cant": 0, "nombre": "Servicio de copias de seguridad", "precio": 2000 }
+  ]
+}

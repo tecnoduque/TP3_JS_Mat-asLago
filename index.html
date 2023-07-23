@@ -13,38 +13,56 @@
 </head>
 
 <body class="fade-in">
-  <div class="container">
-    <h1>Buscar Servicios</h1>
-    <input id="inputBusqueda" type="text" placeholder="Buscar servicio (ESC para limpiar)">
-    <ul id="listaResultados"></ul>
 
-    <div id="contenedorCarrito">
+  <div class="container">
+    <section class="JSON">
+        <select id="archivoJSON" name="select">
+      <option value="datos">Datos 1</option>
+      <option value="datos2" selected>Datos 2</option>
+      <option value="datos3">Datos 3</option>
+      <option value="datosX">Datos X</option>
+
+         </select>
+      <button id="btn-nuevo-fetch" class="btn btn-secondary mt-3">cargar JSON</button>
+    </section>
+    <section class="servicios">
+      <h1>Buscar Servicios</h1>
+      <input id="inputBusqueda" type="text" placeholder="Buscar servicio (ESC para limpiar)">
+      <ul id="listaResultados"></ul>
+
+      <div id="contenedorCarrito">
       <ul id="carrito"></ul>
       <p>Total de servicios listados: <span id="carritoCantidad"></span></p>
       <p id="totalCarrito"></p>
-    </div>
-
+      <button id="enviarCotiza" class="btn btn-success mt-3">Enviar Cotización</button>
+      </section>
+      <section class="administrar">
     <h1>Administrar Servicios</h1>
-
     <div class="row">
-      <div class="col-md-6">
-        <input id="nombreServicio" type="text" placeholder="Nuevo servicio (o dejar vacío)">
+      <div class="col-md-4">
+        <input id="nombreServicio" type="text" placeholder="Nuevo servicio">
       </div>
-      <div class="col-md-6">
-        <input id="valorServicio" type="text" placeholder="Precio (o cualquier cosa para $0)">
-      </div>
+      <div class="col-md-4">
+        <input id="valorServicio" type="text" placeholder="Precio">
+      </div>    
+      <div class="col-md-4">
+      <button id="btn-nuevo-servicio" class="btn btn-primary mt-3">Agregar</button>
+    </div>    
     </div>
 
-    <button id="btn-nuevo-servicio" class="btn btn-primary mt-3">Agregar nuevo servicio</button>
 
     <input id="buscarParaEliminar" type="text" placeholder="Eliminar servicio (ESC para limpiar)">
     <ul id="eliminarResultados"></ul>
-
-    <div id="config">
+  </section>
+  <section class="configurar">
       <textarea id="registro" rows="5"></textarea>
-      <button id="verRegistro" class="btn btn-secondary mt-3">Ocultar Registro (o)</button>
+      <button id="verRegistro" class="btn btn-secondary mt-3">Ocultar Registro (+)</button>
+      <button id="btnLimpiarRegistro" class="btn btn-danger mt-3">Limpiar Registro (-)</button>
       <button id="btnVaciarLocalStorage" class="btn btn-danger mt-3">Vaciar LocalStorage</button>
-    </div>
+  </section>
+
+
+  </div>
   </div>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
